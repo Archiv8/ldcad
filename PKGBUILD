@@ -16,15 +16,18 @@ pkgver=1.6d
 pkgrel=1
 epoch=1
 pkgdesc="A multiplatform LDraw (virtual LEGO) editor that lets you edit LDraw model documents in real-time"
-arch=('i686' 'x86_64')
+arch=("i686" "x86_64")
 url="http://www.melkert.net/LDCad"
-license=('custom')
-depends=('gtk2' 'glu' 'xdg-utils')
-backup=('etc/LDCad.cfg')
+license=("custom")
+depends=(
+	"gtk2"
+	 "glu"
+	 "xdg-utils")
+backup=("etc/LDCad.cfg")
 source=("http://www.melkert.net/action/download/LDCad-${pkgver//./-}-Linux.tar.bz2"
         "license.txt")
-sha256sums=('8dd7d179ca69b79ccd2b1adc20183fad4366937e0d992342bc4fd85898dd3e99'
-            '9f94daabad96e05f398e634ab1ed713a1c1326c147825896d8af1b251035e217')
+sha256sums=("8dd7d179ca69b79ccd2b1adc20183fad4366937e0d992342bc4fd85898dd3e99"
+            "9f94daabad96e05f398e634ab1ed713a1c1326c147825896d8af1b251035e217")
 
 
 prepare() {
@@ -32,8 +35,8 @@ prepare() {
 	# Make the setup script install to the correct paths
 	sed -i -e "s:/usr:$pkgdir/usr:" \
 		   -e "s:/etc:$pkgdir/etc:" \
-		   -e '/update-mime-database/d' \
-		   -e '/update-desktop-database/d' setup.sh
+		   -e "/update-mime-database/d" \
+		   -e "/update-desktop-database/d" setup.sh
 
     if [ "$CARCH" == x86_64 ]; then
 	    cp LDCad64 LDCad
